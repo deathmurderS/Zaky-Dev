@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,900&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #fff;
+    color: #111;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(34, 85, 204, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 85, 204, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .terminal-text {
+    font-family: 'Courier New', monospace;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .writing-vertical-rl {
+    writing-mode: vertical-rl;
+  }
+}
