@@ -14,8 +14,8 @@ export default function HeroSection() {
             RYO<br />RYO<br />RYO
           </div>
 
-          <div className="absolute top-3 left-3 z-10">
-            <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary-100/80 border border-primary-200 rounded text-[9px] font-black tracking-[2px] uppercase text-primary-500">
+          <div className="absolute top-3 left-3 z-20">
+            <span className="inline-flex items-center gap-1 px-2 py-1 bg-white border border-primary-200 rounded text-[9px] font-black tracking-[2px] uppercase text-primary-500 shadow-sm">
               <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse" />
               My Bini Gweh
             </span>
@@ -25,9 +25,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative z-10 flex-1 flex items-center justify-center p-4"
+            className="relative z-10 flex-1 flex items-center justify-center p-4 pt-12 md:pt-4"
           >
-            <div className="relative w-64 h-80 sm:w-72 sm:h-96">
+            <div className="relative w-48 h-64 sm:w-64 sm:h-80 md:w-72 md:h-96">
               <Image
                 src="/ryo-character.jpg"
                 alt="Ryo Yamada - Bocchi the Rock"
