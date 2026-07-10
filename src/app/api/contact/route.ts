@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addMessage, getMessages } from "@/lib/store";
+import { addMessage } from "@/lib/store";
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,13 +20,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const saved = addMessage(name.trim(), email.trim(), message.trim());
+    const saved = await addMessage(name.trim(), email.trim(), message.trim());
     return NextResponse.json({
       success: true,
       id: saved.id,
       message: "Message sent successfully! I'll get back to you soon.",
     });
   } catch (error) {
+    console.error("Contact API error:", error);
     return NextResponse.json(
       { error: "Failed to send message. Please try again." },
       { status: 500 }

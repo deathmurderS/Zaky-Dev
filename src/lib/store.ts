@@ -1,8 +1,4 @@
-import fs from "fs";
-import path from "path";
-
-const DATA_DIR = path.join(process.cwd(), "data");
-const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
+import { getSupabase } from "./supabase";
 
 export type Message = {
   id: string;
@@ -13,53 +9,71 @@ export type Message = {
   read: boolean;
 };
 
-function ensureDir() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
-  if (!fs.existsSync(MESSAGES_FILE)) {
-    fs.writeFileSync(MESSAGES_FILE, JSON.stringify([], null, 2));
-  }
+function mapRow(row: any): Message {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    message: row.message,
+    createdAt: row.created_at,
+    read: row.read,
+  };
 }
 
-export function getMessages(): Message[] {
-  ensureDir();
-  const raw = fs.readFileSync(MESSAGES_FILE, "utf-8");
-  return JSON.parse(raw);
+export async function getMessages(): Promise<Message[]> {
+  const supabase = getSupabase();
+  const { data, error } = await supabase
+    .from("messages")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(mapRow);
 }
 
-export function addMessage(name: string, email: string, message: string): Message {
-  ensureDir();
-  const messages = getMessages();
-  const newMsg: Message = {
+export async function addMessage(
+  name: string,
+  email: string,
+  message: string
+): Promise<Message> {
+  const supabase = getSupabase();
+  const newMsg = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
     name,
     email,
     message,
-    createdAt: new Date().toISOString(),
-    read: false,
   };
-  messages.unshift(newMsg);
-  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
-  return newMsg;
+
+  const { data, error } = await supabase
+    .from("messages")
+    .insert(newMsg)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return mapRow(data);
 }
 
-export function markAsRead(id: string): Message | null {
-  const messages = getMessages();
-  const msg = messages.find((m) => m.id === id);
-  if (msg) {
-    msg.read = true;
-    fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
-  }
-  return msg || null;
+export async function markAsRead(id: string): Promise<Message | null> {
+  const supabase = getSupabase();
+  const { data, error } = await supabase
+    .from("messages")
+    .update({ read: true })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) return null;
+  return data ? mapRow(data) : null;
 }
 
-export function deleteMessage(id: string): boolean {
-  const messages = getMessages();
-  const filtered = messages.filter((m) => m.id !== id);
-  if (filtered.length !== messages.length) {
-    fs.writeFileSync(MESSAGES_FILE, JSON.stringify(filtered, null, 2));
-    return true;
-  }
-  return false;
+export async function deleteMessage(id: string): Promise<boolean> {
+  const supabase = getSupabase();
+  const { error, count } = await supabase
+    .from("messages")
+    .delete({ count: "exact" })
+    .eq("id", id);
+
+  if (error) return false;
+  return (count ?? 0) > 0;
 }
