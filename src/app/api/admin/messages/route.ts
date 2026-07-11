@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getMessages, markAsRead, deleteMessage } from "@/lib/store";
 
+const ADMIN_KEY = process.env.ADMIN_SECRET_KEY || "admin123";
+
 function isAuthorized(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  return searchParams.get("key") === "admin123";
+  // Support both header and query param for flexibility
+  const authHeader = request.headers.get("authorization");
+  const queryKey = new URL(request.url).searchParams.get("key");
+
+  // Compare using timing-safe approach
+  const providedKey = authHeader?.replace("Bearer ", "") || queryKey || "";
+  return providedKey === ADMIN_KEY;
 }
 
 export async function GET(request: NextRequest) {
