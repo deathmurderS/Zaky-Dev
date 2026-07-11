@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZAKY.DEV — Developer Portfolio Platform
 
-## Getting Started
+Portfolio interaktif milik **Muhammad Zaky Zamzami**. Bukan sekadar landing page biasa — ini adalah platform lengkap yang menampilkan kemampuan sebagai Backend & DevOps Engineer.
 
-First, run the development server:
+## Fitur
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Route | Deskripsi |
+|-------|-----------|
+| `/` | Landing page — hero dengan karakter Ryo Yamada + biodata + skill bars |
+| `/dashboard` | Analytics dashboard — data real-time dari GitHub API |
+| `/projects` | Project showcase — GitHub, Live Demo, Documentation links |
+| `/api-playground` | Interactive API explorer — coba endpoint langsung dari browser |
+| `/blog` | Blog dengan artikel teknis — markdown-based |
+| `/blog/[slug]` | Halaman detail artikel |
+| `/tools` | 8 free developer tools (CSV to JSON, UUID, Base64, dll) |
+| `/terminal` | Interactive terminal — ketik `help`, `about`, `skills`, dll |
+| `/status` | Server monitoring — data real CPU, RAM, Disk, Docker |
+| `/contact` | Contact form — kirim pesan, tersimpan di Supabase |
+| `/admin` | Admin panel — lihat & kelola pesan masuk |
+
+### API Routes
+
+| Method | Route | Fungsi | Data |
+|--------|-------|--------|------|
+| GET | `/api/profile` | Profile JSON | Static |
+| GET | `/api/projects` | Projects JSON | Static |
+| GET | `/api/github` | GitHub stats & repos | **Real-time** dari GitHub API |
+| GET | `/api/status` | Server metrics | **Real-time** dari OS |
+| POST | `/api/contact` | Simpan pesan | Supabase |
+| GET/PATCH/DELETE | `/api/admin/messages` | Kelola pesan | Supabase (auth required) |
+
+## Tech Stack
+
+```
+Frontend     → Next.js 14 + TypeScript + Tailwind CSS 3
+Animations   → Framer Motion
+Icons        → Lucide Icons
+Database     → Supabase (PostgreSQL)
+Blog Content → Markdown files (src/content/blog/)
+Deployment   → Vercel
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Struktur Folder
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+zaky-dev/
+├── src/
+│   ├── app/                    # Next.js App Router pages & API
+│   │   ├── admin/              # Admin panel
+│   │   ├── api/
+│   │   │   ├── admin/messages/ # CRUD messages
+│   │   │   ├── contact/        # Receive messages
+│   │   │   ├── github/         # GitHub API proxy
+│   │   │   ├── profile/        # Profile JSON
+│   │   │   ├── projects/       # Projects JSON
+│   │   │   └── status/         # Server status
+│   │   ├── api-playground/     # Interactive API explorer
+│   │   ├── blog/               # Blog list & [slug]/ detail
+│   │   ├── contact/            # Contact form
+│   │   ├── dashboard/          # Analytics dashboard
+│   │   ├── projects/           # Project showcase
+│   │   ├── status/             # Server monitoring
+│   │   ├── terminal/           # Interactive terminal
+│   │   ├── tools/              # Developer tools
+│   │   ├── globals.css         # Global styles
+│   │   ├── layout.tsx          # Root layout + Navbar + Footer
+│   │   └── page.tsx            # Landing page
+│   ├── components/
+│   │   ├── landing/            # Hero section, personality cards
+│   │   └── layout/             # Navbar, Footer
+│   ├── content/blog/           # Blog articles (Markdown)
+│   ├── data/                   # Profile data, skills, projects
+│   └── lib/                    # Utilities, Supabase client, blog parser
+├── public/                     # Static assets (images)
+├── .env.local                  # Environment variables (gitignored)
+├── tailwind.config.ts          # Tailwind config
+├── next.config.mjs
+└── package.json
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Cara Pasang & Jalankan
 
-## Learn More
+```bash
+# Clone
+git clone https://github.com/deathmurderS/Zaky-Dev.git
+cd Zaky-Dev
 
-To learn more about Next.js, take a look at the following resources:
+# Install dependencies
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Setup environment variables
+# 1. Bikin project di Supabase
+# 2. Jalankan SQL:
+#    create table messages (
+#      id text primary key,
+#      name text not null,
+#      email text not null,
+#      message text not null,
+#      created_at timestamptz not null default now(),
+#      read boolean not null default false
+#    );
+# 3. Isi .env.local:
+#    SUPABASE_URL=https://xxx.supabase.co
+#    SUPABASE_SERVICE_ROLE_KEY=eyJxxx...
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Development
+npm run dev
 
-## Deploy on Vercel
+# Build production
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Start production
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy ke Vercel
+
+```bash
+git add .
+git commit -m "Init ZAKY.DEV"
+git push origin main
+```
+
+Di Vercel dashboard → Import repo → tambah environment variables:
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+## Admin Panel
+
+URL: `/admin?key=admin123`
+Ganti `admin123` di `src/app/api/admin/messages/route.ts` sebelum production.
+
+## Cara Nambah Artikel Blog
+
+1. Buat file `.md` di `src/content/blog/`
+2. Isi frontmatter:
+```markdown
+---
+title: "Judul Artikel"
+slug: "judul-artikel"
+date: "2026-01-01"
+tags: ["Python", "Docker"]
+readTime: 5
+---
+```
+3. Tulis konten markdown
+4. Push ke GitHub → Vercel auto-deploy
+
+---
+
+Dibangun dengan ❤️ oleh Muhammad Zaky Zamzami
