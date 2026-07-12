@@ -1,16 +1,24 @@
 import { NextResponse } from "next/server";
-import { execSync } from "child_process";
 import os from "os";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+function isVercel(): boolean {
+  return !!process.env.VERCEL;
+}
 
 export async function GET() {
   try {
+    const runningOnVercel = isVercel();
+    const platform = runningOnVercel ? "vercel-serverless" : os.platform();
+    const hostname = runningOnVercel ? process.env.VERCEL_URL || "vercel.app" : os.hostname();
+
     // CPU
     const cpus = os.cpus();
     const cpuCount = cpus.length;
     const cpuLoad = os.loadavg()[0];
-    const cpuPercent = Math.min(Math.round((cpuLoad / cpuCount) * 100), 100);
+    const cpuPercent = runningOnVercel ? "N/A (Vercel)" : `${Math.min(Math.round((cpuLoad / cpuCount) * 100), 100)}`;
 
     // RAM
     const totalMem = os.totalmem();
@@ -26,41 +34,60 @@ export async function GET() {
     const minutes = Math.floor((uptimeSeconds % 3600) / 60);
     const uptimeStr = `${days}d ${hours}h ${minutes}m`;
 
-    // Disk (Linux only)
-    let diskUsed = 0;
-    let diskTotal = 0;
-    try {
-      const df = execSync("df -k / | tail -1").toString().trim().split(/\s+/);
-      diskTotal = Math.round(parseInt(df[1]) / 1024 / 1024);
-      diskUsed = Math.round(parseInt(df[2]) / 1024 / 1024);
-    } catch {
-      // Fallback for non-Linux
-      diskTotal = 120;
-      diskUsed = 45;
+    // Disk — fallback on Vercel
+    let diskUsed = "N/A";
+    let diskTotal = "N/A";
+    if (!runningOnVercel) {
+      try {
+        const { execSync } = await import("child_process");
+        const df = execSync("df -k / | tail -1").toString().trim().split(/\s+/);
+        diskTotal = `${Math.round(parseInt(df[1]) / 1024 / 1024)} GB`;
+        diskUsed = `${Math.round(parseInt(df[2]) / 1024 / 1024)} GB`;
+      } catch {
+        diskUsed = "N/A";
+        diskTotal = "N/A";
+      }
     }
 
-    // Docker (try to get count)
-    let dockerRunning = 0;
-    let dockerTotal = 0;
-    try {
-      const containers = execSync("docker ps -q").toString().trim();
-      dockerRunning = containers ? containers.split("\n").length : 0;
-      const all = execSync("docker ps -aq").toString().trim();
-      dockerTotal = all ? all.split("\n").length : 0;
-    } catch {
-      dockerRunning = 0;
-      dockerTotal = 0;
+    // Docker
+    let dockerRunning: string | number = "N/A";
+    let dockerTotal: string | number = "N/A";
+    if (!runningOnVercel) {
+      try {
+        const { execSync } = await import("child_process");
+        const containers = execSync("docker ps -q").toString().trim();
+        dockerRunning = containers ? containers.split("\n").length : 0;
+        const all = execSync("docker ps -aq").toString().trim();
+        dockerTotal = all ? all.split("\n").length : 0;
+      } catch {
+        dockerRunning = 0;
+        dockerTotal = 0;
+      }
     }
 
     return NextResponse.json({
-      cpu: { usage: cpuPercent, cores: cpuCount },
-      ram: { used: usedMemGB, total: totalMemGB, unit: "GB" },
-      disk: { used: diskUsed, total: diskTotal, unit: "GB" },
-      uptime: uptimeStr,
+      environment: runningOnVercel ? "Vercel Serverless (limited OS data)" : "VPS / Local",
+      cpu: {
+        usage: cpuPercent,
+        cores: cpuCount,
+        note: runningOnVercel ? "CPU metrics not available on Vercel serverless" : "Real CPU load",
+      },
+      ram: {
+        used: runningOnVercel ? "N/A" : usedMemGB,
+        total: runningOnVercel ? "N/A" : totalMemGB,
+        unit: "GB",
+        note: runningOnVercel ? "RAM metrics are container-level on Vercel" : "Real RAM usage",
+      },
+      disk: { used: diskUsed, total: diskTotal },
+      uptime: runningOnVercel ? "N/A (serverless)" : uptimeStr,
       docker: { running: dockerRunning, total: dockerTotal },
       responseTime: "< 50ms",
-      hostname: os.hostname(),
-      platform: os.platform(),
+      hostname,
+      platform,
+      vercel: {
+        region: process.env.VERCEL_REGION || "unknown",
+        environment: process.env.VERCEL_ENV || "unknown",
+      },
       updatedAt: new Date().toISOString(),
     });
   } catch (error) {

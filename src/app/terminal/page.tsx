@@ -36,7 +36,7 @@ Tidak puas di "bisa" — selalu tanya kenapa dan gimana.`,
   3. Monitoring System - Infrastructure monitoring with Prometheus/Grafana`,
 
   contact: `Contact Information:
-  Email: zaky@zaky.dev
+  Email: zaky@muzaz.dev
   GitHub: github.com/deathmurderS
   Location: Indonesia`,
 
@@ -54,7 +54,7 @@ Tidak puas di "bisa" — selalu tanya kenapa dan gimana.`,
 export default function TerminalPage() {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<{ type: "input" | "output"; text: string }[]>([
-    { type: "output", text: "Welcome to ZAKY.DEV Terminal v1.0.0" },
+    { type: "output", text: "Welcome to MUZAZ.DEV Terminal v1.0.0" },
     { type: "output", text: 'Type "help" to see available commands.' },
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);

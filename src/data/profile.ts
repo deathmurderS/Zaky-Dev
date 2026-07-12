@@ -1,14 +1,14 @@
 export const profile = {
   name: "Muhammad Zaky Zamzami",
-  nameEn: "MUHAMMAD\nZAKY",
+  nameEn: "MUHAMMAD\nMUZAZ",
   nameJp: "ムハンマド ザキ ザムザミ",
   role: "Backend & DevOps Engineer",
-  email: "zaky@zaky.dev",
-  domain: "zaky.dev",
+  email: "zaky@muzaz.dev",
+  domain: "muzaz.dev",
   bio: "Suka membangun sistem dari nol sampai production-ready. Tidak puas di 'bisa' — selalu tanya kenapa dan gimana.",
   focus: "Python · Docker · FastAPI · PostgreSQL · Monitoring · CI/CD",
   location: "Indonesia",
-  avatar: "/zaky-avatar.svg",
+  avatar: "/muzaz-avatar.svg",
 
   stats: {
     technologies: "10+",

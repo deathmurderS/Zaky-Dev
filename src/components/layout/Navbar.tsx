@@ -31,7 +31,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-primary-500 font-black tracking-[3px] text-sm uppercase"
           >
             <Terminal className="w-4 h-4" />
-            ZAKY.DEV
+            MUZAZ.DEV
           </Link>
 
           <div className="hidden md:flex items-center gap-1">

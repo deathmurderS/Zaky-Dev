@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 text-dark-500">
             <Terminal className="w-4 h-4" />
             <span className="text-xs font-bold tracking-[3px] uppercase">
-              ZAKY.DEV &copy; {new Date().getFullYear()}
+              MUZAZ.DEV &copy; {new Date().getFullYear()}
             </span>
           </div>
 

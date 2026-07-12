@@ -1,4 +1,4 @@
-# ZAKY.DEV — Developer Portfolio Platform
+# MUZAZ.DEV — Developer Portfolio Platform
 
 Portfolio interaktif milik **Muhammad Zaky Zamzami**. Platform lengkap yang menampilkan kemampuan sebagai Backend & DevOps Engineer.
 

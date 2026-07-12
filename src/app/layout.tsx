@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "ZAKY.DEV | Muhammad Zaky Zamzami",
+  title: "MUZAZ.DEV | Muhammad Zaky Zamzami",
   description:
     "Backend & DevOps Engineer. Suka membangun sistem dari nol sampai production-ready.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   openGraph: {
-    title: "ZAKY.DEV",
+    title: "MUZAZ.DEV",
     description:
       "Backend & DevOps Engineer. Suka membangun sistem dari nol sampai production-ready.",
     type: "website",
