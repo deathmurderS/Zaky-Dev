@@ -3,7 +3,7 @@ export const profile = {
   nameEn: "MUHAMMAD\nMUZAZ",
   nameJp: "ムハンマド ザキ ザムザミ",
   role: "Backend & DevOps Engineer",
-  email: "zaky@muzaz.dev",
+  email: "zakychen558@gmail.com",
   domain: "muzaz.dev",
   bio: "Suka membangun sistem dari nol sampai production-ready. Tidak puas di 'bisa' — selalu tanya kenapa dan gimana.",
   focus: "Python · Docker · FastAPI · PostgreSQL · Monitoring · CI/CD",

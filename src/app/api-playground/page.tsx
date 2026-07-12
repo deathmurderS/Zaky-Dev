@@ -130,7 +130,7 @@ export default function ApiPlaygroundPage() {
               <Play className="w-3 h-3" />
               Try it:{" "}
               <code className="text-primary-500 font-mono">
-                curl https://muzaz.dev{endpoints[selectedEndpoint].path}
+                {typeof window !== "undefined" ? `curl ${window.location.origin}${endpoints[selectedEndpoint].path}` : `curl https://muzaz.dev${endpoints[selectedEndpoint].path}`}
               </code>
             </p>
           </div>

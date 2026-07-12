@@ -57,7 +57,7 @@ export default function ContactPage() {
           <div className="p-4 rounded-xl border border-dark-100">
             <Mail className="w-4 h-4 text-primary-500 mb-2" />
             <p className="text-xs font-bold mb-1">Email</p>
-            <p className="text-xs text-dark-400">zaky@muzaz.dev</p>
+            <p className="text-xs text-dark-400">zakychen558@gmail.com</p>
           </div>
           <div className="p-4 rounded-xl border border-dark-100">
             <MapPin className="w-4 h-4 text-primary-500 mb-2" />

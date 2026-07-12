@@ -36,7 +36,7 @@ Tidak puas di "bisa" — selalu tanya kenapa dan gimana.`,
   3. Monitoring System - Infrastructure monitoring with Prometheus/Grafana`,
 
   contact: `Contact Information:
-  Email: zaky@muzaz.dev
+  Email: zakychen558@gmail.com
   GitHub: github.com/deathmurderS
   Location: Indonesia`,
 
