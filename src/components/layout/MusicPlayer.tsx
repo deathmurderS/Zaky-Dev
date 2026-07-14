@@ -37,7 +37,7 @@ export default function MusicPlayer() {
 
             {/* Spotify Embed — GANTI link playlist-nya di sini */}
             <iframe
-              src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9GRpeH4CL0S?utm_source=generator&theme=0"
+              src="https://open.spotify.com/embed/playlist/37i9dQZF1EpoGEB0af4rSj?utm_source=generator&theme=0"
               width="100%"
               height="80"
               frameBorder="0"
