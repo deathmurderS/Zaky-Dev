@@ -11,7 +11,6 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/projects", label: "Proyek" },
   { href: "/api-playground", label: "API" },
-  { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/status", label: "Status" },
   { href: "/terminal", label: "Terminal" },
