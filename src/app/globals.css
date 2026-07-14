@@ -20,7 +20,7 @@
   .dark body,
   body.dark {
     background: #0e1116;
-    color: #e0e4ec;
+    color: #f4f6fb;
   }
 }
 
@@ -34,8 +34,8 @@
 
   .dark .grid-pattern {
     background-image:
-      linear-gradient(rgba(100, 149, 237, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(100, 149, 237, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(100, 149, 237, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100, 149, 237, 0.06) 1px, transparent 1px);
   }
 
   .terminal-text {
@@ -55,14 +55,208 @@
   }
 }
 
-/* Dark mode overrides */
-.dark .bg-white { background-color: #1a1e26; }
-.dark .bg-dark-50 { background-color: #1a1e26; }
-.dark .bg-primary-50 { background-color: #0e1a3a; }
-.dark .border-dark-100 { border-color: #2a2e38; }
-.dark .text-dark-400 { color: #9ea3b0; }
-.dark .text-dark-500 { color: #c0c5d0; }
-.dark .text-dark-600 { color: #e0e4ec; }
-.dark .text-dark-700 { color: #f4f6fb; }
-.dark .hover\:bg-dark-50:hover { background-color: #2a2e38; }
-.dark .hover\:border-dark-200:hover { border-color: #404550; }
+/* ── Dark Mode Full Override ── */
+.dark,
+.dark * {
+  /* Background */
+  --bg-page: #0e1116;
+  --bg-card: #1a1e26;
+  --bg-card-hover: #2a2e38;
+  --bg-subtle: #1a1e26;
+  --bg-nav: rgba(14, 17, 22, 0.85);
+  --bg-primary-faded: #0e1a3a;
+
+  /* Text — SEMUA PUTIH TERANG */
+  --text-primary: #f4f6fb;
+  --text-secondary: #e0e4ec;
+  --text-muted: #c0c5d0;
+  --text-dim: #9ea3b0;
+
+  /* Border */
+  --border-default: #2a2e38;
+  --border-hover: #404550;
+}
+
+/* Body & Page */
+.dark body,
+.dark,
+.dark .bg-white,
+.dark .bg-dark-50 {
+  background-color: var(--bg-page) !important;
+}
+
+/* Cards & Containers */
+.dark .rounded-xl,
+.dark .rounded-lg,
+.dark [class*="border-dark-100"] {
+  border-color: var(--border-default) !important;
+}
+
+.dark .hover\:border-primary-200:hover,
+.dark [class*="hover:border-primary"]:hover {
+  border-color: var(--border-hover) !important;
+}
+
+.dark .hover\:bg-dark-50:hover,
+.dark [class*="hover:bg-dark-50"]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+/* Navbar */
+.dark nav,
+.dark .sticky {
+  background-color: var(--bg-nav) !important;
+  border-color: var(--border-default) !important;
+}
+
+/* ── TEXT ── */
+.dark .text-dark-700,
+.dark .text-dark-600,
+.dark .text-dark-500,
+.dark .text-dark-400,
+.dark .text-gray-600,
+.dark .text-gray-500,
+.dark .text-dark-200 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-dark-400 {
+  color: var(--text-dim) !important;
+}
+
+/* Headings & Titles */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark .font-black,
+.dark .font-bold {
+  color: var(--text-primary) !important;
+}
+
+/* Links & Interactive */
+.dark a:not(.text-primary-500),
+.dark button:not(.text-primary-500) {
+  color: var(--text-secondary) !important;
+}
+
+.dark a.text-primary-500,
+.dark button.text-primary-500 {
+  color: #7095dc !important;
+}
+
+.dark .text-primary-500 {
+  color: #7095dc !important;
+}
+
+/* Tech stack chips */
+.dark .chip,
+.dark [class*="px-2.5 py-1 rounded border"] {
+  border-color: var(--border-default) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+
+.dark .chip-accent,
+.dark [class*="chip-accent"] {
+  border-color: #4d7ad4 !important;
+  color: #7095dc !important;
+  background: var(--bg-primary-faded) !important;
+}
+
+/* Stats bar */
+.dark .grid.grid-cols-4 .text-2xl {
+  color: #7095dc !important;
+}
+
+/* Skill bars */
+.dark .bg-dark-100 {
+  background-color: #2a2e38 !important;
+}
+
+/* Personality section */
+.dark section[class*="py-16"] .rounded-xl {
+  background-color: var(--bg-card) !important;
+}
+.dark section[class*="py-16"] .rounded-xl:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+/* Footer */
+.dark footer {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-default) !important;
+}
+
+/* API Playground - code blocks */
+.dark pre {
+  background-color: #0a0d12 !important;
+  color: #7ec8a0 !important;
+}
+
+/* Terminal page */
+.dark [class*="bg-dark-900"] {
+  background-color: #05080c !important;
+}
+
+/* Blog articles */
+.dark article,
+.dark [class*="rounded-xl border"] {
+  background-color: var(--bg-card) !important;
+}
+.dark article:hover,
+.dark [class*="rounded-xl border"]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+/* Blog detail */
+.dark .prose,
+.dark .text-dark-600 {
+  color: var(--text-secondary) !important;
+}
+.dark .prose h2,
+.dark .prose h3 {
+  color: var(--text-primary) !important;
+}
+
+/* Music player */
+.dark [class*="shadow-xl"] {
+  background-color: var(--bg-card) !important;
+}
+
+/* Dashboard cards */
+.dark [class*="hover:shadow-sm"]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+/* Status page */
+.dark .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.1) !important;
+  border-color: rgba(34, 197, 94, 0.2) !important;
+}
+.dark .bg-green-50 .text-green-700 {
+  color: #4ade80 !important;
+}
+.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Blog tags */
+.dark [class*="text-dark-500"][class*="border"],
+.dark span[class*="uppercase px-2 py-0.5"] {
+  color: var(--text-dim) !important;
+  border-color: var(--border-default) !important;
+}
+
+/* Contact page */
+.dark input,
+.dark textarea {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-default) !important;
+  color: var(--text-primary) !important;
+}
+.dark input:focus,
+.dark textarea:focus {
+  border-color: #4d7ad4 !important;
+}
