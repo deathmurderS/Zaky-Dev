@@ -28,10 +28,10 @@ export default function BlogPage() {
           <p>Belum ada artikel.</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {posts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <article className="p-5 rounded-xl border border-dark-100 hover:border-primary-200 hover:shadow-sm transition-all cursor-pointer group">
+              <article className="p-5 rounded-xl border border-dark-100 hover:border-primary-200 hover:shadow-sm transition-all cursor-pointer group my-2">
                 <div className="flex items-center gap-3 text-[10px] text-dark-400 mb-2">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />

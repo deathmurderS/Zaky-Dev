@@ -84,17 +84,17 @@ export default function ApiPlaygroundPage() {
               onClick={() => setSelectedEndpoint(i)}
               className={`w-full text-left p-3 rounded-lg border transition-all ${
                 selectedEndpoint === i
-                  ? "border-primary-200 bg-primary-50"
-                  : "border-dark-100 hover:border-dark-200"
+                  ? "border-primary-200 bg-primary-50 dark:bg-primary-900/20"
+                  : "border-dark-100 hover:border-dark-200 dark:border-dark-700 dark:hover:border-dark-500"
               }`}
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded">
                   {ep.method}
                 </span>
-                <span className="text-xs font-mono text-dark-700">{ep.path}</span>
+                <span className="text-xs font-mono text-dark-700 dark:text-dark-200">{ep.path}</span>
               </div>
-              <p className="text-[10px] text-dark-400">{ep.desc}</p>
+              <p className="text-[10px] text-dark-400 dark:text-dark-300">{ep.desc}</p>
             </button>
           ))}
         </div>
