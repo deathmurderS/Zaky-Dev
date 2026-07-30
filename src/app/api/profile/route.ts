@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { profile } from "@/data/profile";
+import { profile } from "@/content/data/profile";
 
 export async function GET() {
   return NextResponse.json({

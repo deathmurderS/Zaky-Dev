@@ -1,5 +1,5 @@
-import HeroSection from "@/components/landing/HeroSection";
-import PersonalitySection from "@/components/landing/PersonalitySection";
+import HeroSection from "@/components/sections/HeroSection";
+import PersonalitySection from "@/components/sections/PersonalitySection";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { projects } from "@/data/profile";
+import { projects } from "@/content/data/profile";
 import { GitBranch, ExternalLink, BookOpen, Star, GitFork, AlertCircle } from "lucide-react";
 import Link from "next/link";
 

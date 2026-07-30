@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { profile } from "@/content/data/profile";
 import { Search, Cog, Zap, Star } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {

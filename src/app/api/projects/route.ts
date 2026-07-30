@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { projects } from "@/data/profile";
+import { projects } from "@/content/data/profile";
 
 export async function GET() {
   const summary = projects.map((p) => ({
