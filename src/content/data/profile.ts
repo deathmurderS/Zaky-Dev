@@ -1,8 +1,8 @@
 export const profile = {
-  name: "MBG (My Bini Gweh)",
-  nameEn: "MBG\nMY BINI GWEH",
-  nameJp: "エムビージー",
-  role: "My Bini Gweh",
+  name: "Muhammad Zaky Zamzami",
+  nameEn: "MUHAMMAD\nMUZAZ",
+  nameJp: "ムハンマド ザキ ザムザミ",
+  role: "Backend & DevOps Engineer",
   email: "zakychen558@gmail.com",
   domain: "muzaz.dev",
   bio: "Suka membangun sistem dari nol sampai production-ready. Tidak puas di 'bisa' — selalu tanya kenapa dan gimana.",

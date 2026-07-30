@@ -76,8 +76,16 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center justify-center p-6 md:p-12"
+          className="flex flex-col items-center justify-center p-6 md:p-12"
         >
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-xs font-bold text-primary-500 tracking-[3px] uppercase mb-3"
+          >
+            My Bini Gweh
+          </motion.p>
           <div className="relative w-64 h-64 md:w-80 md:h-80">
             <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-400 rounded-2xl rotate-6" />
             <div className="absolute inset-0 bg-white rounded-2xl overflow-hidden shadow-lg">
