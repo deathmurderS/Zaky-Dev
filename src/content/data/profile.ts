@@ -1,14 +1,14 @@
 export const profile = {
-  name: "Muhammad Zaky Zamzami",
-  nameEn: "MUHAMMAD\nMUZAZ",
-  nameJp: "ムハンマド ザキ ザムザミ",
-  role: "Backend & DevOps Engineer",
+  name: "MBG (My Bini Gweh)",
+  nameEn: "MBG\nMY BINI GWEH",
+  nameJp: "エムビージー",
+  role: "My Bini Gweh",
   email: "zakychen558@gmail.com",
   domain: "muzaz.dev",
   bio: "Suka membangun sistem dari nol sampai production-ready. Tidak puas di 'bisa' — selalu tanya kenapa dan gimana.",
   focus: "Python · Docker · FastAPI · PostgreSQL · Monitoring · CI/CD",
   location: "Indonesia",
-  avatar: "/muzaz-avatar.svg",
+  avatar: "/anime-girl.jpg",
 
   stats: {
     technologies: "10+",
@@ -42,7 +42,7 @@ export const profile = {
 
   social: {
     github: "https://github.com/deathmurderS",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/muhammad-zaky-zamzami-b872b7306/",
   },
 
   personality: {

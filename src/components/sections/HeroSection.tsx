@@ -68,12 +68,6 @@ export default function HeroSection() {
             >
               LinkedIn
             </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="px-6 py-2.5 border border-dark-200 text-sm font-medium rounded-lg hover:bg-dark-50 transition-colors"
-            >
-              Contact
-            </a>
           </motion.div>
         </div>
 
