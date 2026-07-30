@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { section } from "framer-motion/client";
 
 function getSupabaseClient(): SupabaseClient {
   const supabaseUrl = process.env.SUPABASE_URL;
