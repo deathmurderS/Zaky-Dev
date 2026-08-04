@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Terminal as TerminalIcon } from "lucide-react";
 
 const commands: Record<string, string> = {
@@ -17,23 +17,22 @@ const commands: Record<string, string> = {
   whoami            - Who am I?`,
 
   about: `Muhammad Zaky Zamzami
-Backend & DevOps Engineer
-Suka membangun sistem dari nol sampai production-ready.
-Tidak puas di "bisa" — selalu tanya kenapa dan gimana.`,
+Data Analyst & Data Entry
+Teliti dalam mengolah, membersihkan, dan menyajikan data.
+Terbiasa dengan Excel, SQL, dan tools visualisasi data.`,
 
   skills: `Technical Skills:
-  • Python (FastAPI, Django)
-  • Docker & Containerization
-  • PostgreSQL & Database Design
-  • Linux System Administration
-  • Monitoring (Grafana, Prometheus)
-  • CI/CD & DevOps
-  • React & TypeScript`,
+  • Data Entry & Accuracy
+  • Excel & Google Sheets
+  • SQL & Database
+  • Data Cleaning (Python Pandas)
+  • Data Visualization (Power BI, Tableau)
+  • Notion & Airtable`,
 
   projects: `Active Projects:
-  1. Dashboard Generator - Auto-generate monitoring dashboards
-  2. DataPulse - Real-time data analytics platform
-  3. Monitoring System - Infrastructure monitoring with Prometheus/Grafana`,
+  1. Sales Dashboard - Analisis penjualan dengan Excel & Power BI
+  2. Data Cleaning Pipeline - Otomatisasi pembersihan data dengan Python
+  3. Inventory Tracker - Tracking stok dengan Google Sheets & Airtable`,
 
   contact: `Contact Information:
   Email: zakychen558@gmail.com
@@ -46,7 +45,7 @@ Tidak puas di "bisa" — selalu tanya kenapa dan gimana.`,
   resume: `Downloading resume...
   -> /resume.pdf`,
 
-  whoami: `> A problem solver who enjoys building clean, functional systems
+  whoami: `> A detail-oriented data analyst who enjoys turning raw data into insights
 > Always learning through practice
 > Never satisfied with "good enough"`,
 };
@@ -132,16 +131,27 @@ export default function TerminalPage() {
         <p className="text-sm text-dark-400 mt-1">Interact with my portfolio via terminal</p>
       </motion.div>
 
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
         ref={terminalRef}
         onClick={() => inputRef.current?.focus()}
         className="rounded-xl border border-dark-200 bg-dark-900 text-green-400 p-4 font-mono text-xs leading-relaxed h-96 overflow-y-auto cursor-text"
       >
-        {history.map((line, i) => (
-          <div key={i} className={line.type === "input" ? "text-green-300" : "text-green-400/80"}>
-            <pre className="whitespace-pre-wrap">{line.text}</pre>
-          </div>
-        ))}
+        <AnimatePresence>
+          {history.map((line, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2 }}
+              className={line.type === "input" ? "text-green-300" : "text-green-400/80"}
+            >
+              <pre className="whitespace-pre-wrap">{line.text}</pre>
+            </motion.div>
+          ))}
+        </AnimatePresence>
         <div className="flex items-center mt-1">
           <span className="text-green-300 mr-2">$</span>
           <input
@@ -154,7 +164,7 @@ export default function TerminalPage() {
             autoFocus
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

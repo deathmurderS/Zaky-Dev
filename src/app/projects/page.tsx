@@ -5,6 +5,22 @@ import { projects } from "@/content/data/profile";
 import { GitBranch, ExternalLink, BookOpen, Star, GitFork, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 260, damping: 24 } },
+};
+
 export default function ProjectsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -20,14 +36,18 @@ export default function ProjectsPage() {
         <p className="text-sm text-dark-400 mt-1">Live projects with demo & documentation</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {projects.map((project, i) => (
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+      >
+        {projects.map((project) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="group rounded-xl border border-dark-100 overflow-hidden hover:border-primary-200 hover:shadow-sm transition-all"
+            variants={item}
+            whileHover={{ y: -6, boxShadow: "0 12px 32px rgba(0,0,0,0.1)" }}
+            className="group rounded-xl border border-dark-100 overflow-hidden hover:border-primary-200 transition-all"
           >
             <div className="p-6">
               <div className="flex items-start justify-between mb-3">
@@ -100,7 +120,7 @@ export default function ProjectsPage() {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -14,6 +14,22 @@ const metrics = [
   { icon: Activity, label: "Status", value: "Active", change: "All systems go", color: "text-green-500" },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+};
+
 export default function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -35,14 +51,18 @@ export default function DashboardPage() {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {metrics.map((metric, i) => (
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
+      >
+        {metrics.map((metric) => (
           <motion.div
             key={metric.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            className="p-5 rounded-xl border border-dark-100 hover:border-primary-200 hover:shadow-sm transition-all"
+            variants={item}
+            whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}
+            className="p-5 rounded-xl border border-dark-100 hover:border-primary-200 transition-all"
           >
             <div className="flex items-center justify-between mb-3">
               <metric.icon className={`w-5 h-5 ${metric.color}`} />
@@ -54,7 +74,7 @@ export default function DashboardPage() {
             <p className="text-xs text-dark-400 mt-1">{metric.label}</p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -8,20 +8,21 @@ import MusicPlayer from "@/components/layout/MusicPlayer";
 export const metadata: Metadata = {
   title: "MUZAZ.DEV | Muhammad Zaky Zamzami",
   description:
-    "Backend & DevOps Engineer. Suka membangun sistem dari nol sampai production-ready.",
+    "Data Analyst & Data Entry. Teliti dalam mengolah, membersihkan, dan menyajikan data menjadi insight yang bermanfaat.",
   keywords: [
     "Muhammad Zaky Zamzami",
-    "Backend Developer",
-    "DevOps Engineer",
+    "Data Analyst",
+    "Data Entry",
+    "Excel",
+    "SQL",
     "Python",
-    "FastAPI",
-    "Docker",
+    "Data Visualization",
     "Portfolio",
   ],
   openGraph: {
     title: "MUZAZ.DEV",
     description:
-      "Backend & DevOps Engineer. Suka membangun sistem dari nol sampai production-ready.",
+      "Data Analyst & Data Entry. Teliti dalam mengolah, membersihkan, dan menyajikan data menjadi insight yang bermanfaat.",
     type: "website",
   },
 };

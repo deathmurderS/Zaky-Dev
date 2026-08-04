@@ -54,31 +54,56 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-xl border border-dark-100">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.15 }}
+            whileHover={{ y: -4 }}
+            className="p-4 rounded-xl border border-dark-100 hover:border-primary-200 transition-all"
+          >
             <Mail className="w-4 h-4 text-primary-500 mb-2" />
             <p className="text-xs font-bold mb-1">Email</p>
             <p className="text-xs text-dark-400">zakychen558@gmail.com</p>
-          </div>
-          <div className="p-4 rounded-xl border border-dark-100">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.25 }}
+            whileHover={{ y: -4 }}
+            className="p-4 rounded-xl border border-dark-100 hover:border-primary-200 transition-all"
+          >
             <MapPin className="w-4 h-4 text-primary-500 mb-2" />
             <p className="text-xs font-bold mb-1">Location</p>
             <p className="text-xs text-dark-400">Indonesia</p>
-          </div>
-          <Link
-            href="https://github.com/deathmurderS"
-            target="_blank"
-            className="flex items-center gap-3 p-4 rounded-xl border border-dark-100 hover:border-primary-200 transition-all"
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.35 }}
+            whileHover={{ y: -4 }}
           >
-            <GitBranch className="w-4 h-4 text-primary-500" />
-            <div>
-              <p className="text-xs font-bold mb-1">GitHub</p>
-              <p className="text-xs text-dark-400">@deathmurderS</p>
-            </div>
-          </Link>
+            <Link
+              href="https://github.com/deathmurderS"
+              target="_blank"
+              className="flex items-center gap-3 p-4 rounded-xl border border-dark-100 hover:border-primary-200 transition-all"
+            >
+              <GitBranch className="w-4 h-4 text-primary-500" />
+              <div>
+                <p className="text-xs font-bold mb-1">GitHub</p>
+                <p className="text-xs text-dark-400">@deathmurderS</p>
+              </div>
+            </Link>
+          </motion.div>
         </div>
 
         <div className="lg:col-span-3">
-          <form onSubmit={handleSubmit} className="p-5 rounded-xl border border-dark-100">
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="p-5 rounded-xl border border-dark-100"
+          >
             <div className="space-y-4">
               <div>
                 <label className="text-xs font-bold text-dark-600 mb-1 block">Name</label>
@@ -87,7 +112,7 @@ export default function ContactPage() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300"
+                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300 transition-colors"
                   placeholder="Your name"
                 />
               </div>
@@ -98,7 +123,7 @@ export default function ContactPage() {
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300"
+                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300 transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -109,13 +134,15 @@ export default function ContactPage() {
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300 resize-none"
+                  className="w-full px-3 py-2 text-sm border border-dark-100 rounded-lg focus:outline-none focus:border-primary-300 transition-colors resize-none"
                   placeholder="Your message..."
                 />
               </div>
-              <button
+              <motion.button
                 type="submit"
                 disabled={status === "sending"}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white text-xs font-bold rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
               >
                 {status === "sending" ? (
@@ -135,9 +162,9 @@ export default function ContactPage() {
                     <Send className="w-3.5 h-3.5" /> Send Message
                   </>
                 )}
-              </button>
+              </motion.button>
             </div>
-          </form>
+          </motion.form>
         </div>
       </div>
     </div>
