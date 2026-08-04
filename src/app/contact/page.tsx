@@ -2,40 +2,17 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, GitBranch, Check, Loader2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, GitBranch, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    setErrorMsg("");
-
-    try {
-      const res = await fetch("/api/main/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to send");
-      }
-
-      setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 4000);
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
-      setTimeout(() => setStatus("idle"), 4000);
-    }
+    const subject = encodeURIComponent(`Pesan dari ${form.name}`);
+    const body = encodeURIComponent(`${form.message}\n\nDari: ${form.name} (${form.email})`);
+    window.location.href = `mailto:zakychen558@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -115,26 +92,9 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                disabled={status === "sending"}
-                className="flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white text-xs font-bold rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
+                className="flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white text-xs font-bold rounded-lg hover:bg-primary-600 transition-colors"
               >
-                {status === "sending" ? (
-                  <>
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" /> Sending...
-                  </>
-                ) : status === "sent" ? (
-                  <>
-                    <Check className="w-3.5 h-3.5" /> Sent!
-                  </>
-                ) : status === "error" ? (
-                  <>
-                    <AlertCircle className="w-3.5 h-3.5 text-red-300" /> {errorMsg}
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-3.5 h-3.5" /> Send Message
-                  </>
-                )}
+                <Send className="w-3.5 h-3.5" /> Send Message
               </button>
             </div>
           </form>

@@ -143,56 +143,6 @@ export const projects = [
   },
 ];
 
-export const blogPosts = [
-  {
-    slug: "deploy-python-ke-railway",
-    title: "Cara Deploy Python ke Railway",
-    excerpt:
-      "Panduan lengkap deploy aplikasi Python (FastAPI/Django) ke Railway dengan mudah dan cepat.",
-    date: "2026-06-15",
-    readTime: 8,
-    tags: ["Python", "Deployment", "Railway"],
-  },
-  {
-    slug: "belajar-docker-untuk-pemula",
-    title: "Belajar Docker untuk Pemula",
-    excerpt:
-      "Memahami konsep dasar Docker, container, image, dan cara menggunakannya dalam development.",
-    date: "2026-06-10",
-    readTime: 12,
-    tags: ["Docker", "DevOps", "Tutorial"],
-  },
-  {
-    slug: "membangun-dashboard-monitoring",
-    title: "Membangun Dashboard Monitoring dengan Grafana",
-    excerpt:
-      "Langkah-langkah membangun dashboard monitoring menggunakan Grafana dan Prometheus.",
-    date: "2026-05-28",
-    readTime: 10,
-    tags: ["Grafana", "Monitoring", "Prometheus"],
-  },
-  {
-    slug: "postgresql-tips-performance",
-    title: "PostgreSQL Performance Tips",
-    excerpt:
-      "Tips dan trik mengoptimalkan performa database PostgreSQL untuk production.",
-    date: "2026-05-20",
-    readTime: 7,
-    tags: ["PostgreSQL", "Database", "Performance"],
-  },
-];
-
-export const tools = [
-  { id: "csv-to-json", name: "CSV to JSON", description: "Convert CSV data to JSON format", category: "converter" },
-  { id: "json-formatter", name: "JSON Formatter", description: "Format and validate JSON data", category: "formatter" },
-  { id: "excel-preview", name: "Excel Preview", description: "Preview Excel files online", category: "preview" },
-  { id: "sql-formatter", name: "SQL Formatter", description: "Format SQL queries neatly", category: "formatter" },
-  { id: "uuid-generator", name: "UUID Generator", description: "Generate random UUIDs", category: "generator" },
-  { id: "password-generator", name: "Password Generator", description: "Generate secure passwords", category: "generator" },
-  { id: "base64-encode", name: "Base64 Encode", description: "Encode text to Base64", category: "encode" },
-  { id: "base64-decode", name: "Base64 Decode", description: "Decode Base64 to text", category: "decode" },
-];
-
 export const serverStatus = {
   cpu: { usage: 34, cores: 4 },
   ram: { used: 3.2, total: 8, unit: "GB" },

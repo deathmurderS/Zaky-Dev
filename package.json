@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.111.0",
     "autoprefixer": "^10.5.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
@@ -18,7 +17,6 @@
     "postcss": "^8.5.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^3.9.2",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
